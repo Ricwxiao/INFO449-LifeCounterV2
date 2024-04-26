@@ -9,11 +9,15 @@ import UIKit
 class PrototypeCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var lifeCountLabel: UILabel!
-    @IBOutlet weak var lifeDownByOne: UIButton!
-    @IBOutlet weak var lifeUpByOne: UIButton!
-    @IBOutlet weak var lifeDownByX: UIButton!
+    @IBOutlet weak var lifeDownOneButton: UIButton!
+    @IBOutlet weak var lifeUpOneButton: UIButton!
+    @IBOutlet weak var lifeDown: UIButton!
     @IBOutlet weak var lifeInput: UITextField!
-    @IBOutlet weak var lifeUpByX: UIButton!
+    @IBOutlet weak var lifeUp: UIButton!
+    
+    var lifeCountChangeHandler: ((IndexPath) -> Void)?
+    var indexPath : IndexPath?
+    
 }
 
 class ViewController: UIViewController, UITableViewDelegate {
@@ -44,22 +48,19 @@ class ViewController: UIViewController, UITableViewDelegate {
         removePlayerButton.isEnabled = false
     }
     
-//    @IBAction func lifeDownByOne(_ sender: Any) {
-//        guard let selectedRow = playerTableData.selectedRowIndex else {
-//            return
-//        }
-//        if playerTableData.data.indices.contains(selectedRow) {
-//            var selectedPlayer = playerTableData.data[selectedRow]
-//            selectedPlayer.1 -= 1
-//            playerTableData.data[selectedRow] = selectedPlayer
-//            playerTable.reloadData()
-//        }
-//    }
+    @IBAction func lifeDownOne(_ sender: UIButton) {
+        lifeDownHandler(sender.tag)
+    }
     
+    func lifeDownHandler(_ tag: Int) {
+        playerTableData.data[tag].1 -= 1
+        playerTable.reloadData()
+    }
     
     class PlayerTableDataModel : NSObject,UITableViewDataSource,UITableViewDelegate {
         var data : [(Int, Int)]
-        var selectedRowIndex: Int?
+        var indexPath: IndexPath?
+        var lifeDownOne: ((UIButton) -> Void)?
         
         init(_ items : [(Int, Int)]) {
             data = items
@@ -78,10 +79,6 @@ class ViewController: UIViewController, UITableViewDelegate {
             }
         }
         
-        func handleLifeDownByOne() {
-            data[selectedRowIndex!].1 -= 1
-        }
-        
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return data.count
         }
@@ -91,13 +88,14 @@ class ViewController: UIViewController, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell")! as! PrototypeCell
             cell.nameLabel.text = "Player \(player.0)"
             cell.lifeCountLabel.text = "\(player.1)"
+            cell.lifeDownOneButton.tag = indexPath.row
             return cell
         }
         
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            selectedRowIndex = indexPath.row
-            NSLog("Selected row index: %ld", selectedRowIndex ?? -1)
-        }
+//        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//            selectedRowIndex = indexPath.row
+//            NSLog("Selected row index: %ld", selectedRowIndex ?? -1)
+//        }
 
     }
     
