@@ -9,6 +9,11 @@ import UIKit
 class PrototypeCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var lifeCountLabel: UILabel!
+    @IBOutlet weak var lifeDownByOne: UIButton!
+    @IBOutlet weak var lifeUpByOne: UIButton!
+    @IBOutlet weak var lifeDownByX: UIButton!
+    @IBOutlet weak var lifeInput: UITextField!
+    @IBOutlet weak var lifeUpByX: UIButton!
 }
 
 class ViewController: UIViewController, UITableViewDelegate {
@@ -17,9 +22,6 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var removePlayerButton: UIButton!
     @IBOutlet weak var playerTable: UITableView!
     
-    
-    
-    @IBOutlet weak var lifeInput: UITextField!
     @IBOutlet weak var lostGameLabel: UILabel!
      
     let playerTableData = PlayerTableDataModel([
@@ -40,10 +42,6 @@ class ViewController: UIViewController, UITableViewDelegate {
     func freezePlayerList() {
         addPlayerButton.isEnabled = false
         removePlayerButton.isEnabled = false
-    }
-    
-    @IBAction func lifeDownByOne(_ sender: Any) {
-//        playerTableData.handleLifeDownByOne()
     }
     
 //    @IBAction func lifeDownByOne(_ sender: Any) {
