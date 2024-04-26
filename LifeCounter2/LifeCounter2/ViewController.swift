@@ -18,8 +18,10 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var playerTable: UITableView!
     
     
-    @IBOutlet weak var lostGameLabel: UILabel!
     
+    @IBOutlet weak var lifeInput: UITextField!
+    @IBOutlet weak var lostGameLabel: UILabel!
+     
     let playerTableData = PlayerTableDataModel([
         (1, 20),
         (2, 20)
@@ -35,10 +37,32 @@ class ViewController: UIViewController, UITableViewDelegate {
         playerTable.reloadData()
     }
     
+    func freezePlayerList() {
+        addPlayerButton.isEnabled = false
+        removePlayerButton.isEnabled = false
+    }
     
-    class PlayerTableDataModel : NSObject,UITableViewDataSource {
-        
+    @IBAction func lifeDownByOne(_ sender: Any) {
+//        playerTableData.handleLifeDownByOne()
+    }
+    
+//    @IBAction func lifeDownByOne(_ sender: Any) {
+//        guard let selectedRow = playerTableData.selectedRowIndex else {
+//            return
+//        }
+//        if playerTableData.data.indices.contains(selectedRow) {
+//            var selectedPlayer = playerTableData.data[selectedRow]
+//            selectedPlayer.1 -= 1
+//            playerTableData.data[selectedRow] = selectedPlayer
+//            playerTable.reloadData()
+//        }
+//    }
+    
+    
+    class PlayerTableDataModel : NSObject,UITableViewDataSource,UITableViewDelegate {
         var data : [(Int, Int)]
+        var selectedRowIndex: Int?
+        
         init(_ items : [(Int, Int)]) {
             data = items
         }
@@ -56,6 +80,9 @@ class ViewController: UIViewController, UITableViewDelegate {
             }
         }
         
+        func handleLifeDownByOne() {
+            data[selectedRowIndex!].1 -= 1
+        }
         
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return data.count
@@ -68,6 +95,12 @@ class ViewController: UIViewController, UITableViewDelegate {
             cell.lifeCountLabel.text = "\(player.1)"
             return cell
         }
+        
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            selectedRowIndex = indexPath.row
+            NSLog("Selected row index: %ld", selectedRowIndex ?? -1)
+        }
+
     }
     
     override func viewDidLoad() {
@@ -75,6 +108,13 @@ class ViewController: UIViewController, UITableViewDelegate {
         lostGameLabel.isHidden = true
         playerTable.dataSource = playerTableData
         playerTable.delegate = self
+        
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+//                view.addGestureRecognizer(tapGesture)
     }
+    
+//    @objc func dismissKeyboard() {
+//        lifeInput.resignFirstResponder()
+//    }
     
 }
