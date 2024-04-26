@@ -49,11 +49,17 @@ class ViewController: UIViewController, UITableViewDelegate {
     }
     
     @IBAction func lifeDownOne(_ sender: UIButton) {
-        lifeDownHandler(sender.tag)
+        lifeCountHandler(sender.tag, -1)
     }
     
-    func lifeDownHandler(_ tag: Int) {
-        playerTableData.data[tag].1 -= 1
+    @IBAction func lifeUpOne(_ sender: UIButton) {
+        lifeCountHandler(sender.tag, +1)
+    }
+    
+    func lifeCountHandler(_ tag: Int, _ op: Int) {
+        var thisLifeCount = playerTableData.data[tag].1
+        playerTableData.data[tag].1 = thisLifeCount + op
+        freezePlayerList()
         playerTable.reloadData()
     }
     
@@ -89,6 +95,7 @@ class ViewController: UIViewController, UITableViewDelegate {
             cell.nameLabel.text = "Player \(player.0)"
             cell.lifeCountLabel.text = "\(player.1)"
             cell.lifeDownOneButton.tag = indexPath.row
+            cell.lifeUpOneButton.tag = indexPath.row
             return cell
         }
         

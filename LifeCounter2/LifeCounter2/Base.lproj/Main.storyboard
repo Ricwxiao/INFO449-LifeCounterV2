@@ -104,6 +104,9 @@
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="tinted" title="+1"/>
+                                                    <connections>
+                                                        <action selector="lifeUpOne:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PSQ-Ci-AqU"/>
+                                                    </connections>
                                                 </button>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="5" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hfU-sy-1oU">
                                                     <rect key="frame" x="240" y="5" width="40" height="34"/>
