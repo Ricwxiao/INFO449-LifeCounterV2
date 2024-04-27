@@ -28,6 +28,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     
     @IBOutlet weak var lostGameLabel: UILabel!
      
+    
+    
     let playerTableData = PlayerTableDataModel([
         (1, 5, 20),
         (2, 5, 20)
@@ -76,6 +78,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     
     func lifeCountHandler(_ tag: Int, _ op: Int) {
         playerTableData.data[tag].2 += op
+        let playerNum = playerTableData.data[tag].0
+        if op < 0 {
+            historyTableData.addHistoryEntry("Player \(playerNum) lost \(-op) life")
+        } else if op > 0 {
+            historyTableData.addHistoryEntry("Player \(playerNum) gain \(op) life")
+        }
         freezePlayerList()
         playerTable.reloadData()
         checkLost(playerTableData.data[tag])
@@ -88,10 +96,36 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         }
     }
     
+    var historyTableData = HistoryTableDataModel([])
+    
+    class HistoryTableDataModel : NSObject,UITableViewDataSource,UITableViewDelegate, UITextFieldDelegate {
+        var history: [String] = []
+        
+        init(_ stringArr: [String]) {
+            self.history = stringArr
+        }
+
+        func addHistoryEntry(_ entry: String) {
+            history.append(entry)
+        }
+
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return history.count
+        }
+        
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell")!
+            cell.textLabel?.text = history[indexPath.row]
+            return cell
+        }
+        
+        
+    }
+    
     class PlayerTableDataModel : NSObject,UITableViewDataSource,UITableViewDelegate, UITextFieldDelegate {
         var data : [(Int, Int, Int)]
         var indexPath: IndexPath?
-        var lifeDownOne: ((UIButton) -> Void)?
+//        var lifeDownOne: ((UIButton) -> Void)?
         
         init(_ items : [(Int, Int, Int)]) {
             data = items

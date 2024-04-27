@@ -168,10 +168,22 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ElQ-Bs-iWi">
+                                <rect key="frame" x="300" y="56" width="79" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="79" id="wmT-Vf-0mb"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="History"/>
+                                <connections>
+                                    <segue destination="UXI-gf-pNz" kind="show" id="EV1-lN-7Sr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ElQ-Bs-iWi" secondAttribute="trailing" constant="14" id="1sT-sH-Gem"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HEy-0M-Hxv" secondAttribute="trailing" id="2gZ-H7-1Aw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dk8-Vq-VOT" secondAttribute="bottom" constant="25" id="91O-SH-2m5"/>
                             <constraint firstItem="dk8-Vq-VOT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="63" id="C2Q-za-8vi"/>
@@ -180,6 +192,7 @@
                             <constraint firstItem="Uqz-j8-DFG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Wy9-jY-KcE"/>
                             <constraint firstItem="dk8-Vq-VOT" firstAttribute="top" secondItem="cs0-kq-PLA" secondAttribute="bottom" constant="14" id="YqC-4m-Dvy"/>
                             <constraint firstItem="Uqz-j8-DFG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="143" id="d7J-dx-rKm"/>
+                            <constraint firstItem="ElQ-Bs-iWi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="56" id="lBh-PN-qB9"/>
                             <constraint firstItem="kDH-M8-smv" firstAttribute="top" secondItem="HEy-0M-Hxv" secondAttribute="bottom" constant="22" id="uTk-0O-Lwv"/>
                             <constraint firstItem="HEy-0M-Hxv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xBb-WN-uai"/>
                             <constraint firstItem="HEy-0M-Hxv" firstAttribute="top" secondItem="Uqz-j8-DFG" secondAttribute="bottom" constant="10" id="xIJ-qM-8ol"/>
@@ -196,6 +209,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="130.53435114503816" y="-27.464788732394368"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="LcR-pO-pat">
+            <objects>
+                <viewController id="UXI-gf-pNz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1e7-G6-nTK">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okN-aq-EjN">
+                                <rect key="frame" x="143" y="51" width="107" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="CwY-dL-x4V"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4zg-5r-RXt">
+                                <rect key="frame" x="0.0" y="89" width="393" height="595"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HistoryCell" id="oaw-G8-smz">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="44.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oaw-G8-smz" id="1Do-l9-yF4">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="44.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History String" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lf9-bc-Rf9">
+                                                    <rect key="frame" x="20" y="11" width="105" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="1RO-aK-38L"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lf9-bc-Rf9" firstAttribute="top" secondItem="1Do-l9-yF4" secondAttribute="topMargin" id="p28-Fg-42T"/>
+                                                <constraint firstItem="lf9-bc-Rf9" firstAttribute="leading" secondItem="1Do-l9-yF4" secondAttribute="leadingMargin" id="z2f-cH-qzK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7Or-V7-lrT"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <constraints>
+                            <constraint firstItem="7Or-V7-lrT" firstAttribute="bottom" secondItem="4zg-5r-RXt" secondAttribute="bottom" constant="158" id="G0F-1m-UsP"/>
+                            <constraint firstItem="okN-aq-EjN" firstAttribute="top" secondItem="7Or-V7-lrT" secondAttribute="top" constant="51" id="PiZ-LS-Lwc"/>
+                            <constraint firstItem="7Or-V7-lrT" firstAttribute="trailing" secondItem="okN-aq-EjN" secondAttribute="trailing" constant="143" id="VGk-9N-Mau"/>
+                            <constraint firstItem="okN-aq-EjN" firstAttribute="leading" secondItem="7Or-V7-lrT" secondAttribute="leading" constant="143" id="bQP-5P-HOX"/>
+                            <constraint firstItem="4zg-5r-RXt" firstAttribute="top" secondItem="7Or-V7-lrT" secondAttribute="top" constant="89" id="eEt-Ow-iJF"/>
+                            <constraint firstItem="4zg-5r-RXt" firstAttribute="leading" secondItem="7Or-V7-lrT" secondAttribute="leading" id="idy-IA-7Qa"/>
+                            <constraint firstItem="4zg-5r-RXt" firstAttribute="trailing" secondItem="7Or-V7-lrT" secondAttribute="trailing" id="oyM-tY-mcP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="udJ-IP-yi4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bgy-pY-Avy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="829.7709923664122" y="-27.464788732394368"/>
         </scene>
     </scenes>
     <resources>

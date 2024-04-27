@@ -16,6 +16,7 @@
 		021F57012BDB4C1100BA33CA /* LifeCounter2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021F57002BDB4C1100BA33CA /* LifeCounter2Tests.swift */; };
 		021F570B2BDB4C1100BA33CA /* LifeCounter2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021F570A2BDB4C1100BA33CA /* LifeCounter2UITests.swift */; };
 		021F570D2BDB4C1100BA33CA /* LifeCounter2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021F570C2BDB4C1100BA33CA /* LifeCounter2UITestsLaunchTests.swift */; };
+		021F57202BDCD17700BA33CA /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 021F571F2BDCD17700BA33CA /* History.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		021F57062BDB4C1100BA33CA /* LifeCounter2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LifeCounter2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		021F570A2BDB4C1100BA33CA /* LifeCounter2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCounter2UITests.swift; sourceTree = "<group>"; };
 		021F570C2BDB4C1100BA33CA /* LifeCounter2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCounter2UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		021F571F2BDCD17700BA33CA /* History.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				021F56F22BDB4C1100BA33CA /* Assets.xcassets */,
 				021F56F42BDB4C1100BA33CA /* LaunchScreen.storyboard */,
 				021F56F72BDB4C1100BA33CA /* Info.plist */,
+				021F571F2BDCD17700BA33CA /* History.storyboard */,
 			);
 			path = LifeCounter2;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				021F56F32BDB4C1100BA33CA /* Assets.xcassets in Resources */,
 				021F56F62BDB4C1100BA33CA /* Base in Resources */,
 				021F56F12BDB4C1000BA33CA /* Base in Resources */,
+				021F57202BDCD17700BA33CA /* History.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
