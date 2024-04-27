@@ -57,25 +57,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     }
     
     @IBAction func lifeDown(_ sender: UIButton) {
-        var byNum = 5
-        if let textField = view.viewWithTag(sender.tag) as? UITextField {
-            if let text = textField.text {
-                byNum = Int(text) ?? 0
-                textField.text = "\(5)"
+        if let cell = sender.superview?.superview as? PrototypeCell {
+            if let text = cell.lifeInput.text, let inputNumber = Int(text) {
+//                print("\(byNum)")
+                lifeCountHandler(sender.tag, -inputNumber)
             }
         }
-        lifeCountHandler(sender.tag, -byNum)
     }
     
     @IBAction func lifeUp(_ sender: UIButton) {
-        var byNum = 5
-        if let textField = view.viewWithTag(sender.tag) as? UITextField {
-            if let text = textField.text {
-                byNum = Int(text) ?? 0
-                textField.text = "\(5)"
+        if let cell = sender.superview?.superview as? PrototypeCell {
+            if let text = cell.lifeInput.text, let inputNumber = Int(text) {
+//                print("\(byNum)")
+                lifeCountHandler(sender.tag, inputNumber)
             }
         }
-        lifeCountHandler(sender.tag, byNum)
     }
     
     func lifeCountHandler(_ tag: Int, _ op: Int) {
