@@ -11,16 +11,16 @@ class PrototypeCell: UITableViewCell {
     @IBOutlet weak var lifeCountLabel: UILabel!
     @IBOutlet weak var lifeDownOneButton: UIButton!
     @IBOutlet weak var lifeUpOneButton: UIButton!
-    @IBOutlet weak var lifeDown: UIButton!
+    @IBOutlet weak var lifeDownButton: UIButton!
     @IBOutlet weak var lifeInput: UITextField!
-    @IBOutlet weak var lifeUp: UIButton!
+    @IBOutlet weak var lifeUpButton: UIButton!
     
     var lifeCountChangeHandler: ((IndexPath) -> Void)?
     var indexPath : IndexPath?
     
 }
 
-class ViewController: UIViewController, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var addPlayerButton: UIButton!
     @IBOutlet weak var removePlayerButton: UIButton!
@@ -29,8 +29,8 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var lostGameLabel: UILabel!
      
     let playerTableData = PlayerTableDataModel([
-        (1, 20),
-        (2, 20)
+        (1, 5, 20),
+        (2, 5, 20)
     ])
     
     @IBAction func addPlayer(_ sender: Any) {
@@ -56,26 +56,55 @@ class ViewController: UIViewController, UITableViewDelegate {
         lifeCountHandler(sender.tag, +1)
     }
     
-    func lifeCountHandler(_ tag: Int, _ op: Int) {
-        var thisLifeCount = playerTableData.data[tag].1
-        playerTableData.data[tag].1 = thisLifeCount + op
-        freezePlayerList()
-        playerTable.reloadData()
+    @IBAction func lifeDown(_ sender: UIButton) {
+        var byNum = 5
+        if let textField = view.viewWithTag(sender.tag) as? UITextField {
+            if let text = textField.text {
+                byNum = Int(text) ?? 0
+                textField.text = "\(5)"
+            }
+        }
+        lifeCountHandler(sender.tag, -byNum)
     }
     
-    class PlayerTableDataModel : NSObject,UITableViewDataSource,UITableViewDelegate {
-        var data : [(Int, Int)]
+    @IBAction func lifeUp(_ sender: UIButton) {
+        var byNum = 5
+        if let textField = view.viewWithTag(sender.tag) as? UITextField {
+            if let text = textField.text {
+                byNum = Int(text) ?? 0
+                textField.text = "\(5)"
+            }
+        }
+        lifeCountHandler(sender.tag, byNum)
+    }
+    
+    func lifeCountHandler(_ tag: Int, _ op: Int) {
+        playerTableData.data[tag].2 += op
+        freezePlayerList()
+        playerTable.reloadData()
+        checkLost(playerTableData.data[tag])
+    }
+    
+    func checkLost(_ player: (Int, Int, Int)) {
+        if (player.2 <= 0) {
+            lostGameLabel.text = "Player \(player.0) has lost the game!"
+            lostGameLabel.isHidden = false
+        }
+    }
+    
+    class PlayerTableDataModel : NSObject,UITableViewDataSource,UITableViewDelegate, UITextFieldDelegate {
+        var data : [(Int, Int, Int)]
         var indexPath: IndexPath?
         var lifeDownOne: ((UIButton) -> Void)?
         
-        init(_ items : [(Int, Int)]) {
+        init(_ items : [(Int, Int, Int)]) {
             data = items
         }
         
         func addPlayer() {
             let count = data.count
             if count < 8 {
-                data.append((count + 1, 20))
+                data.append((count + 1, 5, 20))
             }
         }
         func removePlayer() {
@@ -90,20 +119,27 @@ class ViewController: UIViewController, UITableViewDelegate {
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let player = data[indexPath.row]
+            let id = indexPath.row
+            let player = data[id]
             let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell")! as! PrototypeCell
             cell.nameLabel.text = "Player \(player.0)"
-            cell.lifeCountLabel.text = "\(player.1)"
-            cell.lifeDownOneButton.tag = indexPath.row
-            cell.lifeUpOneButton.tag = indexPath.row
+            cell.lifeCountLabel.text = "\(player.2)"
+            cell.lifeDownOneButton.tag = id
+            cell.lifeUpOneButton.tag = id
+            cell.lifeInput.tag = id
+            cell.lifeInput.delegate = self
+            cell.lifeInput.text = "\(player.1)"
+            cell.lifeInput.keyboardType = .numberPad
+            cell.lifeDownButton.tag = id
+            cell.lifeUpButton.tag = id
             return cell
         }
         
-//        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//            selectedRowIndex = indexPath.row
-//            NSLog("Selected row index: %ld", selectedRowIndex ?? -1)
+//        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//            let tag = textField.tag
+//            data[tag].1 = Int(textField.text ?? "\(5)")!
+//            return true
 //        }
-
     }
     
     override func viewDidLoad() {
@@ -111,13 +147,5 @@ class ViewController: UIViewController, UITableViewDelegate {
         lostGameLabel.isHidden = true
         playerTable.dataSource = playerTableData
         playerTable.delegate = self
-        
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-//                view.addGestureRecognizer(tapGesture)
     }
-    
-//    @objc func dismissKeyboard() {
-//        lifeInput.resignFirstResponder()
-//    }
-    
 }

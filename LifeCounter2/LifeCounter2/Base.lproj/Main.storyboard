@@ -123,6 +123,9 @@
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="⬇️"/>
+                                                    <connections>
+                                                        <action selector="lifeDown:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QsH-qF-1O1"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csi-ZY-Dsh">
                                                     <rect key="frame" x="272" y="5" width="47" height="35"/>
@@ -131,6 +134,9 @@
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="⬆️"/>
+                                                    <connections>
+                                                        <action selector="lifeUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qhi-gG-gnE"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -152,10 +158,10 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="lifeCountLabel" destination="X0o-VX-fFP" id="Z6x-n1-ieh"/>
-                                            <outlet property="lifeDown" destination="VsW-Vn-O8D" id="zBr-xb-AAr"/>
+                                            <outlet property="lifeDownButton" destination="VsW-Vn-O8D" id="XDW-SY-wew"/>
                                             <outlet property="lifeDownOneButton" destination="gyg-cl-haT" id="ZCr-RY-P1p"/>
                                             <outlet property="lifeInput" destination="hfU-sy-1oU" id="0OD-uU-TN5"/>
-                                            <outlet property="lifeUp" destination="csi-ZY-Dsh" id="1dU-Z1-ENk"/>
+                                            <outlet property="lifeUpButton" destination="csi-ZY-Dsh" id="IFk-wU-BSu"/>
                                             <outlet property="lifeUpOneButton" destination="ED8-tr-W82" id="MQA-4i-7pm"/>
                                             <outlet property="nameLabel" destination="aAq-J1-5T7" id="Y9I-ih-EEk"/>
                                         </connections>
